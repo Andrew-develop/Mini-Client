@@ -36,7 +36,7 @@ extension LoginInteractor: ILoginInteractor {
         self.networkService.loadData(requestData: requestData) { [weak self] (result: Result<UserResponse, Error>) in
             switch result {
             case .success(_):
-                UserDefaults.standard.setValue(requestData.token, forKey: "token")
+                UserDefaults.standard.setValue(requestData.token, forKey: UserDefaultsKey.token)
                 self?.onSuccessHandler?()
             case .failure(let error):
                 self?.onFailureHandler?(error)

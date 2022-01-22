@@ -16,7 +16,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
                 
         let window = UIWindow(windowScene: windowScene)
-        let rootVC = UserDefaults.standard.string(forKey: "token") != nil ? ReposAssembly.build() : LoginAssembly.build()
+        let rootVC = UserDefaults.standard.string(forKey: UserDefaultsKey.token) != nil ? ReposAssembly.build() : LoginAssembly.build()
         let navigation = UINavigationController(rootViewController: rootVC)
         window.rootViewController = navigation
         self.window = window

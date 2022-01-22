@@ -173,8 +173,8 @@ private enum Multiplier {
     static let heightIndentMultiplier: CGFloat = 0.08
     static let starLabelMultiplier: CGFloat = 0.2
     static let nameLabelMultiplier: CGFloat = 0.6
-    static let languageLabelMultiplier: CGFloat = 0.6
-    static let dateLabelMultiplier: CGFloat = 0.6
+    static let languageLabelMultiplier: CGFloat = 0.45
+    static let dateLabelMultiplier: CGFloat = 0.45
 }
 
 

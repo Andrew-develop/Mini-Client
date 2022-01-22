@@ -15,10 +15,6 @@ final class ReposRouter {
         self.controller = controller
     }
     
-    func back() {
-        self.controller?.dismiss(animated: true)
-    }
-    
     func showAlert(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .default, handler: nil))

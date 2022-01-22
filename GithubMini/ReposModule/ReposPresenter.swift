@@ -37,7 +37,7 @@ extension ReposPresenter: IReposPresenter {
     }
     
     func onViewReady() {
-        guard let token = UserDefaults.standard.string(forKey: "token") else { return }
+        guard let token = UserDefaults.standard.string(forKey: UserDefaultsKey.token) else { return }
         self.interactor.fetchRepos(
             with: .init(
                 path: .repos,
@@ -50,7 +50,7 @@ extension ReposPresenter: IReposPresenter {
 
 private extension ReposPresenter {
     
-    private func setHandlers() {
+    func setHandlers() {
         
         self.reposView?.onGetNumberOfReposHandler = { [weak self] in
             self?.interactor.numberOfRepos
@@ -60,7 +60,7 @@ private extension ReposPresenter {
             guard let crudeRepo = self?.interactor.getRepo(index: index) else { return nil }
             let repo = Repo.init(
                 name: crudeRepo.name,
-                date: crudeRepo.updated_at,
+                date: self?.formatDate(from: crudeRepo.updated_at),
                 stars: String(crudeRepo.stargazers_count),
                 language: crudeRepo.language,
                 originalRepo: nil
@@ -78,8 +78,29 @@ private extension ReposPresenter {
         self.interactor.onFailureHandler = { [weak self] error in
             DispatchQueue.main.async {
                 self?.reposView?.stopIndicator()
-                self?.router.showAlert(title: "Ошибка", message: error.localizedDescription)
+                self?.router.showAlert(title: AlertType.error, message: error.localizedDescription)
             }
         }
+    }
+    
+    func formatDate(from stringDate: String) -> String? {
+        guard let date = parseRecievedDate(stringDate: stringDate),
+              let formattedDate = formatDate(from: date)
+        else {
+            return nil
+        }
+        return formattedDate
+    }
+    
+    func parseRecievedDate(stringDate: String) -> Date? {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        return inputFormatter.date(from: stringDate)
+    }
+    
+    func formatDate(from date: Date) -> String? {
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd-MM-yyyy"
+        return outputFormatter.string(from: date)
     }
 }

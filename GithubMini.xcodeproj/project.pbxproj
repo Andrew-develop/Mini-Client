@@ -31,6 +31,7 @@
 		874FCF32279A6EB200C31521 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FCF31279A6EB200C31521 /* Repo.swift */; };
 		874FCF34279A786500C31521 /* ReposResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FCF33279A786500C31521 /* ReposResponse.swift */; };
 		87FB076E279C292D001CB395 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB076D279C292D001CB395 /* GeneralExtensions.swift */; };
+		87FB0770279C5305001CB395 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB076F279C5305001CB395 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		874FCF31279A6EB200C31521 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		874FCF33279A786500C31521 /* ReposResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposResponse.swift; sourceTree = "<group>"; };
 		87FB076D279C292D001CB395 /* GeneralExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
+		87FB076F279C5305001CB395 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				8725F93C27998B1A009B658A /* AppDelegate.swift */,
 				8725F93E27998B1A009B658A /* SceneDelegate.swift */,
 				87FB076D279C292D001CB395 /* GeneralExtensions.swift */,
+				87FB076F279C5305001CB395 /* Constants.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				874FCF23279A684A00C31521 /* ReposView.swift in Sources */,
 				8725F95427998C8D009B658A /* LoginInteractor.swift in Sources */,
 				874FCF29279A687700C31521 /* ReposInteractor.swift in Sources */,
+				87FB0770279C5305001CB395 /* Constants.swift in Sources */,
 				874FCF2B279A688400C31521 /* ReposRouter.swift in Sources */,
 				8725F95227998C76009B658A /* LoginPresenter.swift in Sources */,
 				874FCF32279A6EB200C31521 /* Repo.swift in Sources */,

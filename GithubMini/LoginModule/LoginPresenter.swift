@@ -55,7 +55,7 @@ private extension LoginPresenter {
         
         self.loginInteractor.onFailureHandler = { [weak self] error in
             DispatchQueue.main.async {
-                self?.loginRouter.showAlert(title: "Ошибка", message: error.localizedDescription)
+                self?.loginRouter.showAlert(title: AlertType.error, message: error.localizedDescription)
             }
         }
     }
