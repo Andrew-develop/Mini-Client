@@ -10,14 +10,12 @@ import UIKit
 final class LoginViewController: UIViewController {
 
     private var loginPresenter: ILoginPresenter
-    private var loginView: ILoginView
     
     struct Dependencies {
         let presenter: ILoginPresenter
     }
 
     init(dependencies: Dependencies) {
-        self.loginView = LoginView(frame: UIScreen.main.bounds)
         self.loginPresenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -27,8 +25,9 @@ final class LoginViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = self.loginView
-        self.loginPresenter.loadView(loginView: self.loginView)
+        let loginView = LoginView(frame: UIScreen.main.bounds)
+        self.view = loginView
+        self.loginPresenter.loadView(loginView: loginView)
     }
 
     override func viewDidLoad() {

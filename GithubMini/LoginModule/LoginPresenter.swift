@@ -47,8 +47,8 @@ private extension LoginPresenter {
         }
         
         self.loginInteractor.onSuccessHandler = { [weak self] in
-            self?.loginRouter.setTargetController()
             DispatchQueue.main.async {
+                self?.loginRouter.setTargetController()
                 self?.loginRouter.next()
             }
         }

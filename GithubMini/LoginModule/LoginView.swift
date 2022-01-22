@@ -38,7 +38,9 @@ final class LoginView: UIView {
         button.setTitle(UIButton.buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(onTouchedButton(sender:)), for: .touchUpInside)
         button.layer.cornerRadius = UIButton.cornerRadius
-        button.backgroundColor = .red
+        button.layer.borderColor = UIColor.red.cgColor
+        button.layer.borderWidth = 1
+        button.setTitleColor(.red, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

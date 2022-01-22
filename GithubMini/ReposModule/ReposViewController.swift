@@ -10,14 +10,12 @@ import UIKit
 final class ReposViewController: UIViewController {
 
     private var reposPresenter: IReposPresenter
-    private var reposView: IReposView
     
     struct Dependencies {
         let presenter: IReposPresenter
     }
     
     init(dependencies: Dependencies) {
-        self.reposView = ReposView(frame: UIScreen.main.bounds)
         self.reposPresenter = dependencies.presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -27,8 +25,9 @@ final class ReposViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = self.reposView
-        self.reposPresenter.loadView(reposView: self.reposView)
+        let reposView = ReposView(frame: UIScreen.main.bounds)
+        self.view = reposView
+        self.reposPresenter.loadView(reposView: reposView)
     }
     
     override func viewDidLoad() {
