@@ -30,6 +30,7 @@
 		874FCF2F279A6A1C00C31521 /* ReposTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FCF2E279A6A1C00C31521 /* ReposTableViewCell.swift */; };
 		874FCF32279A6EB200C31521 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FCF31279A6EB200C31521 /* Repo.swift */; };
 		874FCF34279A786500C31521 /* ReposResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FCF33279A786500C31521 /* ReposResponse.swift */; };
+		87FB076E279C292D001CB395 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB076D279C292D001CB395 /* GeneralExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		874FCF2E279A6A1C00C31521 /* ReposTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposTableViewCell.swift; sourceTree = "<group>"; };
 		874FCF31279A6EB200C31521 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		874FCF33279A786500C31521 /* ReposResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposResponse.swift; sourceTree = "<group>"; };
+		87FB076D279C292D001CB395 /* GeneralExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				8725F93C27998B1A009B658A /* AppDelegate.swift */,
 				8725F93E27998B1A009B658A /* SceneDelegate.swift */,
+				87FB076D279C292D001CB395 /* GeneralExtensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				8725F95F27999DE3009B658A /* RequestData.swift in Sources */,
 				8725F95D27999B68009B658A /* NetworkService.swift in Sources */,
 				8725F93D27998B1A009B658A /* AppDelegate.swift in Sources */,
+				87FB076E279C292D001CB395 /* GeneralExtensions.swift in Sources */,
 				8725F95827998CBD009B658A /* LoginAssembly.swift in Sources */,
 				874FCF25279A685B00C31521 /* ReposViewController.swift in Sources */,
 				8725F95A27998CCD009B658A /* LoginRouter.swift in Sources */,
@@ -410,6 +414,7 @@
 				INFOPLIST_FILE = GithubMini/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -437,6 +442,7 @@
 				INFOPLIST_FILE = GithubMini/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

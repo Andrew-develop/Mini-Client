@@ -17,7 +17,7 @@ final class LoginView: UIView {
         
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.backgroundColor
         self.configView()
     }
     
@@ -29,6 +29,7 @@ final class LoginView: UIView {
         let textField = UITextField()
         textField.placeholder = UITextField.placeholderText
         textField.borderStyle = .none
+        textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

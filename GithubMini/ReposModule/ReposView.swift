@@ -23,7 +23,7 @@ final class ReposView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.backgroundColor
         self.configView()
     }
     
@@ -37,9 +37,10 @@ final class ReposView: UIView {
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ReposTableViewCell.self, forCellReuseIdentifier: ReposTableViewCell.cellID)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor.backgroundColor
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
+        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -94,7 +95,7 @@ private extension ReposView {
 extension ReposView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
+        UITableView.cellHeight
     }
 }
 
@@ -120,4 +121,8 @@ extension ReposView: UITableViewDataSource {
 
 private enum Indent {
     static let edgeIndent: CGFloat = 20
+}
+
+private extension UITableView {
+    static let cellHeight: CGFloat = 100
 }
