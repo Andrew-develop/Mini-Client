@@ -27,16 +27,12 @@ final class LoginViewController: UIViewController {
     }
     
     override func loadView() {
-        super.loadView()
-        self.loginPresenter.loadView(view: self.loginView)
+        self.view = self.loginView
+        self.loginPresenter.loadView(loginView: self.loginView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.view.addSubview(loginView)
     }
 }
 

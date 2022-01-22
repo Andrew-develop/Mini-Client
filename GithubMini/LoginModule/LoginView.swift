@@ -42,11 +42,20 @@ final class LoginView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var tapRecognizer: UITapGestureRecognizer = {
+        var recognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        return recognizer
+    }()
 }
 
 extension LoginView: ILoginView {}
 
 private extension LoginView {
+    
+    @objc private func dismissKeyboard() {
+        self.tokenTextField.resignFirstResponder()
+    }
     
     @objc func onTouchedButton(sender: UIButton) {
         let token = self.tokenTextField.text
@@ -76,6 +85,17 @@ private extension LoginView {
             self.loginButton.topAnchor.constraint(equalTo: self.tokenTextField.bottomAnchor, constant: Indent.standardHeightIndent),
             self.loginButton.heightAnchor.constraint(equalToConstant: UIButton.standardHeight)
         ])
+    }
+}
+
+extension LoginView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.addGestureRecognizer(self.tapRecognizer)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.removeGestureRecognizer(self.tapRecognizer)
     }
 }
 

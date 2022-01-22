@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ILoginPresenter {
-    func loadView(view: ILoginView)
+    func loadView(loginView: ILoginView)
 }
 
 final class LoginPresenter {
@@ -30,7 +30,8 @@ final class LoginPresenter {
 
 extension LoginPresenter: ILoginPresenter {
     
-    func loadView(view: ILoginView) {
+    func loadView(loginView: ILoginView) {
+        self.loginView = loginView
         self.setHandlers()
     }
 }
@@ -47,11 +48,15 @@ private extension LoginPresenter {
         
         self.loginInteractor.onSuccessHandler = { [weak self] in
             self?.loginRouter.setTargetController()
-            self?.loginRouter.next()
+            DispatchQueue.main.async {
+                self?.loginRouter.next()
+            }
         }
         
         self.loginInteractor.onFailureHandler = { [weak self] error in
-//            self?.loginRouter
+            DispatchQueue.main.async {
+                self?.loginRouter.showAlert(title: "Ошибка", message: error.localizedDescription)
+            }
         }
     }
 }
