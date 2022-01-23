@@ -23,6 +23,7 @@ final class ReposTableViewCell: UITableViewCell {
     
     private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
+        dateLabel.textAlignment = .right
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         return dateLabel
     }()
@@ -80,6 +81,7 @@ private extension ReposTableViewCell {
         self.dateLabel.text = nil
         self.languageLabel.text = nil
         self.originalRepoLabel.text = nil
+        self.starLabel.text = nil
     }
     
     func fillView(repo: Repo) {

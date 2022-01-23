@@ -62,7 +62,7 @@ private extension ReposPresenter {
                 name: crudeRepo.name,
                 date: self?.formatDate(from: crudeRepo.updated_at),
                 stars: String(crudeRepo.stargazers_count),
-                language: crudeRepo.language,
+                language: self?.formatLanguage(from: crudeRepo.language),
                 originalRepo: nil
             )
             return repo
@@ -83,24 +83,40 @@ private extension ReposPresenter {
         }
     }
     
+    func formatLanguage(from language: String?) -> String? {
+        guard let language = language else { return nil }
+        return Constants.languageLabelBase + language
+    }
+    
     func formatDate(from stringDate: String) -> String? {
         guard let date = parseRecievedDate(stringDate: stringDate),
               let formattedDate = formatDate(from: date)
         else {
             return nil
         }
-        return formattedDate
+        return Constants.dateLabelBase + formattedDate
     }
     
     func parseRecievedDate(stringDate: String) -> Date? {
         let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        inputFormatter.dateFormat = DateFormat.input
         return inputFormatter.date(from: stringDate)
     }
     
     func formatDate(from date: Date) -> String? {
         let outputFormatter = DateFormatter()
-        outputFormatter.dateFormat = "dd-MM-yyyy"
+        outputFormatter.dateFormat = DateFormat.output
         return outputFormatter.string(from: date)
     }
+}
+
+private enum Constants {
+    static let dateLabelBase = "Edited: "
+    static let languageLabelBase = "Language: "
+    static let originalRepoLabelBase = "Origin repo: "
+}
+
+private enum DateFormat {
+    static let input = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    static let output = "dd.MM.yyyy"
 }
