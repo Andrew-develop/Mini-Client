@@ -45,12 +45,14 @@ final class ReposTableViewCell: UITableViewCell {
     
     private lazy var languageLabel: UILabel = {
         let languageLabel = UILabel()
+        languageLabel.textAlignment = .left
         languageLabel.translatesAutoresizingMaskIntoConstraints = false
         return languageLabel
     }()
     
     private lazy var originalRepoLabel: UILabel = {
         let originalRepoLabel = UILabel()
+        originalRepoLabel.textAlignment = .left
         originalRepoLabel.translatesAutoresizingMaskIntoConstraints = false
         return originalRepoLabel
     }()

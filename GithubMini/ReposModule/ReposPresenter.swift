@@ -62,8 +62,8 @@ private extension ReposPresenter {
                 name: crudeRepo.name,
                 date: self?.formatDate(from: crudeRepo.updated_at),
                 stars: String(crudeRepo.stargazers_count),
-                language: self?.formatLanguage(from: crudeRepo.language),
-                originalRepo: nil
+                language: crudeRepo.language,
+                originalRepo: crudeRepo.fork ? Constants.originalRepoLabelBase : nil
             )
             return repo
         }
@@ -81,11 +81,6 @@ private extension ReposPresenter {
                 self?.router.showAlert(title: AlertType.error, message: error.localizedDescription)
             }
         }
-    }
-    
-    func formatLanguage(from language: String?) -> String? {
-        guard let language = language else { return nil }
-        return Constants.languageLabelBase + language
     }
     
     func formatDate(from stringDate: String) -> String? {
@@ -112,8 +107,7 @@ private extension ReposPresenter {
 
 private enum Constants {
     static let dateLabelBase = "Edited: "
-    static let languageLabelBase = "Language: "
-    static let originalRepoLabelBase = "Origin repo: "
+    static let originalRepoLabelBase = "It's fork"
 }
 
 private enum DateFormat {
