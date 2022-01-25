@@ -71,20 +71,11 @@ final class ReposTableViewCell: UITableViewCell {
 extension ReposTableViewCell: IReposTableViewCell {
     
     func config(repo: Repo) {
-        self.clearCell()
         self.fillView(repo: repo)
     }
 }
 
 private extension ReposTableViewCell {
-    
-    func clearCell() {
-        self.nameLabel.text = nil
-        self.dateLabel.text = nil
-        self.languageLabel.text = nil
-        self.originalRepoLabel.text = nil
-        self.starLabel.text = nil
-    }
     
     func fillView(repo: Repo) {
         self.nameLabel.text = repo.name
