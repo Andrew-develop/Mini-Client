@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol ILoginView: UIView {
     var onTouchedHandler: ((String?) -> Void)? { get set }
@@ -72,22 +73,22 @@ private extension LoginView {
     
     func constraintTokenTextField() {
         self.addSubview(self.tokenTextField)
-        NSLayoutConstraint.activate([
-            self.tokenTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Indent.edgeIndent),
-            self.tokenTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Indent.edgeIndent),
-            self.tokenTextField.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            self.tokenTextField.heightAnchor.constraint(equalToConstant: UITextField.standardHeight)
-        ])
+        self.tokenTextField.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide)
+            make.left.equalTo(self).offset(Indent.edgeIndent)
+            make.right.equalTo(self).inset(Indent.edgeIndent)
+            make.height.equalTo(UITextField.standardHeight)
+        }
     }
     
     func constraintLoginButton() {
         self.addSubview(self.loginButton)
-        NSLayoutConstraint.activate([
-            self.loginButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Indent.edgeIndent),
-            self.loginButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Indent.edgeIndent),
-            self.loginButton.topAnchor.constraint(equalTo: self.tokenTextField.bottomAnchor, constant: Indent.standardHeightIndent),
-            self.loginButton.heightAnchor.constraint(equalToConstant: UIButton.standardHeight)
-        ])
+        self.loginButton.snp.makeConstraints { make in
+            make.top.equalTo(self.tokenTextField.snp.bottom).offset(Indent.standardHeightIndent)
+            make.left.equalTo(self).offset(Indent.edgeIndent)
+            make.right.equalTo(self).inset(Indent.edgeIndent)
+            make.height.equalTo(UIButton.standardHeight)
+        }
     }
 }
 

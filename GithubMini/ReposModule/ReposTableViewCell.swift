@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol IReposTableViewCell {
     func config(repo: Repo)
@@ -32,6 +33,7 @@ final class ReposTableViewCell: UITableViewCell {
         let starLabel = UILabel()
         starLabel.textAlignment = .right
         starLabel.translatesAutoresizingMaskIntoConstraints = false
+        starLabel.backgroundColor = .green
         return starLabel
     }()
     
@@ -96,62 +98,59 @@ private extension ReposTableViewCell {
     
     func constraintNameLabel() {
         self.contentView.addSubview(self.nameLabel)
-        NSLayoutConstraint.activate([
-            self.nameLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Indent.edgeIndent),
-            self.nameLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: Multiplier.nameLabelMultiplier),
-            self.nameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: self.contentView.bounds.height * Multiplier.heightIndentMultiplier),
-            self.nameLabel.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: Multiplier.heightMultiplier)
-        ])
+        self.nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self)
+            make.left.equalTo(self).offset(Indent.edgeIndent)
+            make.height.equalTo(self).multipliedBy(0.33)
+        }
     }
     
     func constraintStarImageView() {
         self.contentView.addSubview(self.starImageView)
-        NSLayoutConstraint.activate([
-            self.starImageView.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: Multiplier.heightMultiplier),
-            self.starImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Indent.edgeIndent),
-            self.starImageView.widthAnchor.constraint(equalTo: self.starImageView.heightAnchor),
-            self.starImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: self.contentView.bounds.height * Multiplier.heightIndentMultiplier)
-        ])
+        self.starImageView.snp.makeConstraints { make in
+            make.top.equalTo(self)
+            make.right.equalTo(self).inset(Indent.edgeIndent)
+            make.width.height.equalTo(16)
+        }
     }
     
     func constraintStarLabel() {
         self.contentView.addSubview(self.starLabel)
-        NSLayoutConstraint.activate([
-            self.starLabel.trailingAnchor.constraint(equalTo: self.starImageView.leadingAnchor, constant: -Indent.edgeIndent),
-            self.starLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: Multiplier.starLabelMultiplier),
-            self.starLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: self.contentView.bounds.height * Multiplier.heightIndentMultiplier),
-            self.starLabel.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: Multiplier.heightMultiplier)
-        ])
+        self.starLabel.snp.makeConstraints { make in
+            make.top.equalTo(self)
+            make.left.equalTo(self.nameLabel.snp.right)
+            make.right.equalTo(self.starImageView.snp.left)
+            make.height.equalTo(self).multipliedBy(0.33)
+        }
     }
     
     func constraintOriginalRepo() {
         self.contentView.addSubview(self.originalRepoLabel)
-        NSLayoutConstraint.activate([
-            self.originalRepoLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Indent.edgeIndent),
-            self.originalRepoLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Indent.edgeIndent),
-            self.originalRepoLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant: self.contentView.bounds.height * Multiplier.heightIndentMultiplier),
-            self.originalRepoLabel.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: Multiplier.heightMultiplier)
-        ])
+        self.originalRepoLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.nameLabel.snp.bottom)
+            make.left.equalTo(self).offset(Indent.edgeIndent)
+            make.right.equalTo(self).inset(Indent.edgeIndent)
+            make.height.equalTo(self).multipliedBy(0.33)
+        }
     }
     
     func constraintLanguageLabel() {
         self.contentView.addSubview(self.languageLabel)
-        NSLayoutConstraint.activate([
-            self.languageLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: Indent.edgeIndent),
-            self.languageLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: Multiplier.languageLabelMultiplier),
-            self.languageLabel.topAnchor.constraint(equalTo: self.originalRepoLabel.bottomAnchor, constant: self.contentView.bounds.height * Multiplier.heightIndentMultiplier),
-            self.languageLabel.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: Multiplier.heightMultiplier)
-        ])
+        self.languageLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.originalRepoLabel.snp.bottom)
+            make.left.equalTo(self).offset(Indent.edgeIndent)
+            make.height.equalTo(self).multipliedBy(0.33)
+        }
     }
     
     func constraintDateLabel() {
         self.contentView.addSubview(self.dateLabel)
-        NSLayoutConstraint.activate([
-            self.dateLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -Indent.edgeIndent),
-            self.dateLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: Multiplier.dateLabelMultiplier),
-            self.dateLabel.topAnchor.constraint(equalTo: self.originalRepoLabel.bottomAnchor, constant: self.contentView.bounds.height * Multiplier.heightIndentMultiplier),
-            self.dateLabel.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: Multiplier.heightMultiplier)
-        ])
+        self.dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.originalRepoLabel.snp.bottom)
+            make.right.equalTo(self).inset(Indent.edgeIndent)
+            make.bottom.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.33)
+        }
     }
 }
 

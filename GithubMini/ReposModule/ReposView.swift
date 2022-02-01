@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol IReposView: UIView {
     func startIndicator()
@@ -75,20 +76,18 @@ private extension ReposView {
     
     func constraintTableView() {
         self.addSubview(self.tableView)
-        NSLayoutConstraint.activate([
-            self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Indent.edgeIndent),
-            self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Indent.edgeIndent),
-            self.tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            self.tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        self.tableView.snp.makeConstraints { make in
+            make.top.bottom.equalTo(self.safeAreaLayoutGuide)
+            make.left.equalTo(self).offset(Indent.edgeIndent)
+            make.right.equalTo(self).inset(Indent.edgeIndent)
+        }
     }
     
     func constraintActivityIndicator() {
         self.addSubview(self.activityIndicator)
-        NSLayoutConstraint.activate([
-            self.activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        ])
+        self.activityIndicator.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(self)
+        }
     }
 }
 
@@ -102,7 +101,8 @@ extension ReposView: UITableViewDelegate {
 extension ReposView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.onGetNumberOfReposHandler?() ?? 0
+        let a = self.onGetNumberOfReposHandler?() ?? 0
+        return a
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,5 +124,5 @@ private enum Indent {
 }
 
 private extension UITableView {
-    static let cellHeight: CGFloat = 100
+    static let cellHeight: CGFloat = 72
 }
